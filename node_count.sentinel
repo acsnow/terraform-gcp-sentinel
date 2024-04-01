@@ -2,12 +2,12 @@ import "tfplan/v2" as tfplan
 import "strings"
 
 # Define the maximum number of allowed instances
-max_instances = 4
+max_instances = 3
 
 allComputeInstances = filter tfplan.resource_changes as _, resource_changes {
 	resource_changes.type is "google_compute_instance" and
-    (rc.change.actions contains "create" or rc.change.actions is ["update"] or
-    rc.change.actions is ["no-op"])
+    (resource_changes.change.actions contains "create" or resource_changes.change.actions is ["update"] or
+    resource_changes.change.actions is ["no-op"])
 
 }
 
