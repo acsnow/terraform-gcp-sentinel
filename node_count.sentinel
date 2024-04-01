@@ -5,7 +5,10 @@ import "strings"
 max_instances = 4
 
 allComputeInstances = filter tfplan.resource_changes as _, resource_changes {
-	resource_changes.type is "google_compute_instance" 
+	resource_changes.type is "google_compute_instance" and
+    (rc.change.actions contains "create" or rc.change.actions is ["update"] or
+    rc.change.actions is ["no-op"])
+
 }
 
 nodeCount = length(allComputeInstances)
