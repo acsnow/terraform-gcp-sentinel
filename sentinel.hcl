@@ -30,5 +30,5 @@ policy "node_count" {
 
 policy "ip_forward" {
   source = "./ip_forward.sentinel"
-  enforcement_level = "advisory"
+  enforcement_level = "hard-mandatory"
 }
